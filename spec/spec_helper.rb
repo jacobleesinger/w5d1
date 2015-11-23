@@ -19,4 +19,5 @@ RSpec.configure do |config|
     fill_in 'password', with: 'password'
     click_on 'Submit'
   end
+
 end
