@@ -35,10 +35,12 @@ feature "logging out" do
     expect(page).to have_content 'Sign In'
     expect(page).to have_content 'Sign Up'
   end
+  
   scenario "doesn't show username on the homepage after logout" do
     sign_up('Breakfast')
     click_on 'Sign Out'
     expect(page).to have_content 'Sign In'
+    expect(page).to_not have_content 'Breakfast'
   end
 
 end

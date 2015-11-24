@@ -1,0 +1,7 @@
+<ul>
+<% attrs.each do |attr| %>
+  <li>
+  <%= attr %>: <%= goal.send(attr) %>
+  </li>
+<% end %>
+</ul>
