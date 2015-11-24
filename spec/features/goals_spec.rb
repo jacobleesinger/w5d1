@@ -16,28 +16,50 @@ feature 'testing goals' do
     end
 
     before(:each) do
-      visit new_goal_url
-      fill_in "title", with: 'Coding'
-      fill_in "description", with: 'Python'
-      choose('Private')
-      click_on "Submit"
+      create_goal('testing goal')
     end
 
     scenario "creates goal with title" do
-      expect(page).to have_content "Coding"
+      expect(page).to have_content "testing goal"
     end
 
     scenario "creates goal with description" do
-      expect(page).to have_content "Python"
+      expect(page).to have_content "blah blah blah"
     end
 
-    # scenario "visible only to creator" do
-    #   expect(page).to have_content "Coding"
-    # end
+  end
+
+  feature 'user has goals' do
+    user = FactoryGirl.build(:user)
+    user.id = 1
+
+    before(:each) do
+      sign_up(user)
+      goal = FactoryGirl.build(:public_goal)
+      user.goals = [goal]
+    end
+
+    scenario "user has a goal" do
+      expect(user.goals.first).to be_instance_of(Goal)
+    end
+
+    scenario "user has multiple goals" do
+      user.goals << FactoryGirl.build(:public_goal)
+      expect(user.goals.length).to eq(2)
+    end
   end
 
   feature 'update goals' do
+    before(:each) do
+      create_goal('fml')
+      click_on "Edit Goal"
+      fill_in 'title', with: 'better goal'
+      click_on "Submit"
+    end
 
+    scenario "user update goal title" do
+      expect(page).to have_content 'better goal'
+    end
   end
 
   feature 'delete goals' do

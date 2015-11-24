@@ -1,18 +1,17 @@
 FactoryGirl.define do
-#   sequence :user do |n|
-#     username { Faker::Name.name }
-#     password "password"
-#     id n
-#   end
-# end
-#
-# FactoryGirl.define do
-#   factory :default_goal do
-#     title "Title"
-#     description "blah blah blah"
-#     user_id user.id
-#     status "NEW"
-#     visibility "PRIVATE"
-#   end
+  factory :goal do
+    title "Title"
+    description "blah blah blah"
+    user_id 1
+    status "NEW"
+    visibility "PRIVATE"
 
+    factory :public_goal do
+      visibility "PUBLIC"
+    end
+
+    factory :shitty_goal do
+      title "Shitty Title"
+    end
+  end
 end

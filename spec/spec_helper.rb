@@ -20,4 +20,12 @@ RSpec.configure do |config|
     click_on 'Submit'
   end
 
+  def create_goal(title)
+    visit new_goal_url
+    fill_in "title", with: title
+    fill_in "description", with: 'blah blah blah'
+    choose('Private')
+    click_on "Submit"
+  end
+
 end

@@ -21,8 +21,8 @@ end
 feature "logging in" do
   user = FactoryGirl.build(:user)
   before(:each) do
-    sign_up('Breakfast')
-    sign_in('Breakfast')
+    sign_up(user.username)
+    sign_in(user.username)
   end
   scenario "shows username on the homepage after login" do
     expect(page).to have_content user.username
@@ -35,7 +35,7 @@ feature "logging out" do
     expect(page).to have_content 'Sign In'
     expect(page).to have_content 'Sign Up'
   end
-  
+
   scenario "doesn't show username on the homepage after logout" do
     sign_up('Breakfast')
     click_on 'Sign Out'
