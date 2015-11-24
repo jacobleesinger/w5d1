@@ -6,13 +6,13 @@ feature 'testing goals' do
     sign_up('Breakfast')
   end
 
+  scenario "shows goal form" do
+    expect(page).to have_content "Create New Goal"
+  end
+
   feature 'create goals' do
     before(:each) do
       click_on 'Create New Goal'
-    end
-
-    scenario "shows goal form" do
-      expect(page).to have_content "Create New Goal"
     end
 
     before(:each) do
